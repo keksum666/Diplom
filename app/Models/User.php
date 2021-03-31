@@ -40,4 +40,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'id_user', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsToMany(Film_Status::class, 'films_status_to_films', 'user_id', 'id');
+    }
 }
